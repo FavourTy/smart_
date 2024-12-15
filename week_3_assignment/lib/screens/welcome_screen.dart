@@ -3,11 +3,11 @@ import 'package:week_3_assignment/shared/app_colors.dart';
 import 'package:week_3_assignment/shared/constants.dart';
 //import 'package:flutter_svg/flutter_svg.dart';
 import 'package:week_3_assignment/shared/app_assets.dart';
-import 'package:week_3_assignment/navigation/widgets/custom_button.dart';
+import 'package:week_3_assignment/widgets/custom_button.dart';
 import 'package:week_3_assignment/navigation/app_route_strings.dart';
 
 
-import '../shared/social_button.dart';
+import '../widgets/social_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

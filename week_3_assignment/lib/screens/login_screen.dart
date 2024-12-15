@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:week_3_assignment/navigation/app_route_strings.dart';
 import 'package:week_3_assignment/shared/app_assets.dart';
 import 'package:week_3_assignment/shared/app_colors.dart';
-import 'package:week_3_assignment/navigation/widgets/custom_button.dart';
+import 'package:week_3_assignment/widgets/custom_button.dart';
 import 'package:week_3_assignment/shared/constants.dart';
-import 'package:week_3_assignment/shared/textformfield.dart';
+import 'package:week_3_assignment/widgets/textformfield.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});

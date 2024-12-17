@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project_1/shared/app_color.dart';
+import 'package:mini_project_1/shared/constants.dart';
 
 class GenderContainer extends StatefulWidget {
   const GenderContainer({super.key, required this.icon, required this.text});
@@ -24,14 +25,14 @@ class _GenderContainerState extends State<GenderContainer> {
   // }
   Color _containerColor = AppColor.scond;
   Color _textColor = AppColor.buttonColor;
-  Color _IconColor = AppColor.buttonColor;
+  Color _iconColor = AppColor.buttonColor;
 
   void _toggleColor() {
     setState(() {
       _containerColor = _containerColor == AppColor.scond
           ? AppColor.buttonColor
           : AppColor.scond;
-      _IconColor = _IconColor == AppColor.buttonColor
+      _iconColor = _iconColor == AppColor.buttonColor
           ? AppColor.scond
           : AppColor.buttonColor;
       _textColor = _textColor == AppColor.buttonColor
@@ -48,17 +49,22 @@ class _GenderContainerState extends State<GenderContainer> {
         height: 50,
         width: 175,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: _containerColor),
+            borderRadius: BorderRadius.circular(circularRadius),
+            color: _containerColor),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               widget.icon,
-              color: _IconColor,
+              color: _iconColor,
+              size: 15,
+            ),
+            SizedBox(
+              width: 10,
             ),
             Text(
               widget.text,
-              style: TextStyle(color: _textColor),
+              style: normalTextStyle.copyWith(color: _textColor),
             )
           ],
         ),

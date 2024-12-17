@@ -11,7 +11,13 @@ class AppRouter {
       case AppRouteStrings.base:
         return CupertinoPageRoute(builder: (_) => const HomePage());
       case AppRouteStrings.resultpage:
-        return CupertinoPageRoute(builder: (_) => const Resultpage());
+        final args = settings.arguments as Map<String, dynamic>;
+        return CupertinoPageRoute(
+            builder: (_) => Resultpage(
+                  bmi: args["bmi"],
+                  catgry: args["catgry"],
+                  text: args["text"],
+                ));
       default:
         return CupertinoPageRoute(builder: (_) => const SizedBox());
     }

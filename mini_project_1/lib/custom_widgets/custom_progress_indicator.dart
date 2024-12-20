@@ -35,15 +35,19 @@ class _ResultCardState extends State<ResultCard> {
                   child: Container(
                     height: siz,
                     width: siz,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: AppColor.scond),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColor.scond,
+                    ),
                   )),
               Center(
                   child: Container(
                 height: siz - 50,
                 width: siz - 50,
                 decoration: const BoxDecoration(
-                    color: AppColor.backgroundColor, shape: BoxShape.circle),
+                  color: AppColor.backgroundColor,
+                  shape: BoxShape.circle,
+                ),
                 child: Center(
                   child: Text(
                     "${widget.text}",

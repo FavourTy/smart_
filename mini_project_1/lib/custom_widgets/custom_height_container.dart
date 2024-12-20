@@ -31,7 +31,7 @@ class _HeightcontainerState extends State<Heightcontainer> {
                 trackHeight: 15,
               ),
               child: RotatedBox(
-                quarterTurns: 3,
+                quarterTurns: 4,
                 child: Slider(
                   value: widget.value,
                   min: min,

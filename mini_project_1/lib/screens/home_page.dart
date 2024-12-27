@@ -135,8 +135,10 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 40,
               ),
-              CustomButton(
-                  callBack: () => _calculateandNavigate(), text: "Lets Go")
+              Center(
+                child: CustomButton(
+                    callBack: () => _calculateandNavigate(), text: "Lets Go"),
+              )
             ],
           ),
         ),

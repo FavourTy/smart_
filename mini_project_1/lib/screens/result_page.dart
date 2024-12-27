@@ -65,7 +65,7 @@ class _ResultpageState extends State<Resultpage> {
               const SizedBox(
                 height: 30,
               ),
-              CustomR(text: widget.catgry)
+              Center(child: CustomR(text: widget.catgry))
             ],
           ),
         ),

@@ -19,7 +19,7 @@ This app allows users to calculate their Body Mass Index(BMI) based on their wei
 
 ## A video showcasing the app's functionality 🎥
 
--[BMI Calculator Application Demo](https://drive.google.com/open?id=1-RGFXSunWHvevq3UEb-Jb3tBLXfvTBK6&usp=drive_fs)
+- [BMI Calculator Application Demo](https://drive.google.com/open?id=1-RGFXSunWHvevq3UEb-Jb3tBLXfvTBK6&usp=drive_fs)
 
 ## Installation 🚀
 To set up the project locally, follow these steps:
@@ -30,7 +30,7 @@ To set up the project locally, follow these steps:
 
 2. Navigate to the project directory:
    ```bash
-   cd your-project-name
+   cd mini_project_1
 
 3. Install the required dependencies:
    ```bash
@@ -43,8 +43,8 @@ To set up the project locally, follow these steps:
 
 ## Technologies Used 🛠️
 
-- Flutter: Framework for building beautiful UIs.
-- Dart: Programming language for Flutter apps.
+- Flutter
+- Dart
 - Figma
 
 

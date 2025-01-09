@@ -12,7 +12,7 @@ class AppRouter {
       case AppRouteStrings.base:
         return CupertinoPageRoute(builder: (_) => const HomeScreen());
       case AppRouteStrings.weatherDetailScreen:
-        return CupertinoPageRoute(builder: (_) => WeatherDetailsScreen());
+        return CupertinoPageRoute(builder: (_) => const WeatherDetailsScreen());
       default:
         return CupertinoPageRoute(builder: (_) => const SizedBox());
     }

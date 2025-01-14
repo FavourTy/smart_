@@ -18,4 +18,24 @@ class ApiServices {
     ));
   }
   late final Dio _dio;
+  //methods
+  /*To differentiate btwn a successful response and unsuccessful response
+  darts records would be used 
+  if it is successful return dynamic.data
+  if it is not successful return string.error
+  Future<({dynamic data, String error})>
+   */
+  Future<({dynamic data, String? error})> get(
+      {required String endpoint}) async {
+    try {
+      final request = await _dio.get(endpoint);
+      final status = request.statusCode ?? 0;
+      if (status > 199 && status < 300) {
+        return (data: request.data, error: null);
+      }
+      return (data: null, error: (request.data["message"] ?? "").toString());
+    } catch (t) {
+      return (data: null, error: t.toString());
+    }
+  }
 }

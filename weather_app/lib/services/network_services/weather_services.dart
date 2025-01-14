@@ -19,6 +19,8 @@ class ApiServices {
       receiveTimeout: Duration(seconds: 10),
     ));
 
+//step 5 add pretty dio loggers for easy terminal output
+
     _dio.interceptors.add(PrettyDioLogger(
       requestBody: true,
       responseBody: true,

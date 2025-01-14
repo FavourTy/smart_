@@ -2,7 +2,9 @@
 // setup your dio w your base url
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiServices {
   static final ApiServices _singleton = ApiServices._internal();
@@ -16,7 +18,18 @@ class ApiServices {
       connectTimeout: Duration(seconds: 10),
       receiveTimeout: Duration(seconds: 10),
     ));
+
+    _dio.interceptors.add(PrettyDioLogger(
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      error: true,
+      compact: true,
+      maxWidth: 90,
+      enabled: kDebugMode,
+    ));
   }
+
   late final Dio _dio;
   //methods
   /*To differentiate btwn a successful response and unsuccessful response

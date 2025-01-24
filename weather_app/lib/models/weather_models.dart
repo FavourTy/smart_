@@ -1,3 +1,5 @@
+//step 3: create a model that wpould be used in our repository
+
 import 'dart:convert';
 
 Weather weatherFromJson(String str) => Weather.fromJson(json.decode(str));

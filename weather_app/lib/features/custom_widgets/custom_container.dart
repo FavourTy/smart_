@@ -13,7 +13,7 @@ class CustomWeatherCard extends StatelessWidget {
   final String? location;
   final String country;
   final String weatherType;
-  final num temp;
+  final int temp;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,47 +22,60 @@ class CustomWeatherCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20)),
       child: Row(
         children: [
-          Column(
-            children: [
-              Text(location ?? "Current Location", style: containerTextStyle),
-              SizedBox(
-                height: 10,
-              ),
-              Text(country,
-                  style: containerTextStyle.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 28.0,
-                  )),
-              SizedBox(
-                height: 30,
-              ),
-              Text(weatherType,
-                  style: containerTextStyle.copyWith(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 28.0,
-                  )),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(location ?? "Current Location", style: containerTextStyle),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(country,
+                    style: containerTextStyle.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 28.0,
+                    )),
+                SizedBox(
+                  height: 25,
+                ),
+                Text(weatherType,
+                    style: containerTextStyle.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 28.0,
+                    )),
+              ],
+            ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Image.asset(temp > 50
-                  ? AppAssets.drizzlingPng
-                  : temp > 20
-                      ? AppAssets.snowyPng
-                      : temp > 100
-                          ? AppAssets.stormyPng
-                          : temp > 100
-                              ? AppAssets.sunnyPng
-                              : ""),
-              SizedBox(
-                height: 30,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image.asset(
+                    temp > 50
+                        ? AppAssets.drizzlingPng
+                        : temp > 5
+                            ? AppAssets.snowyPng
+                            : temp > 100
+                                ? AppAssets.stormyPng
+                                : temp > 100
+                                    ? AppAssets.sunnyPng
+                                    : "",
+                    height: 80,
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  Text(
+                    "${temp}",
+                    style: containerTextStyle,
+                  ),
+                ],
               ),
-              Text(
-                temp.toString(),
-                style: containerTextStyle,
-              ),
-            ],
+            ),
           )
         ],
       ),

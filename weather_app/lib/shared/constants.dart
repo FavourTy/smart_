@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
 
-const headingTextStyle = TextStyle(
+const headingTextSd = TextStyle(
   color: AppColors.headingTextColor,
   fontSize: 20.0,
   fontWeight: FontWeight.w400,

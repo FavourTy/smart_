@@ -13,7 +13,7 @@ class CustomWeatherCard extends StatelessWidget {
   final String? location;
   final String country;
   final String weatherType;
-  final int temp;
+  final num temp;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,13 +55,13 @@ class CustomWeatherCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Image.asset(
-                    temp > 50
-                        ? AppAssets.drizzlingPng
-                        : temp > 5
+                    temp > -21 && temp <= 0
+                        ? AppAssets.snowyPng
+                        : temp > 10 && temp <= 20
                             ? AppAssets.snowyPng
-                            : temp > 100
-                                ? AppAssets.stormyPng
-                                : temp > 100
+                            : temp > 5 && temp < 21
+                                ? AppAssets.drizzlingPng
+                                : temp > 20 && temp <= 40
                                     ? AppAssets.sunnyPng
                                     : "",
                     height: 80,

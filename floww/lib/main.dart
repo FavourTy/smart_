@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       navigatorKey: AppRouter.navKey,
       onGenerateRoute: AppRouter.appRouter,
-      initialRoute: AppRouteStrings.base,
+      initialRoute: AppRouteStrings.signUpScreen,
     );
   }
 }

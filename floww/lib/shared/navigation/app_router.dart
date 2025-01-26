@@ -4,7 +4,6 @@ import 'package:floww/features/screens/chat_screen/chat_screen.dart';
 import 'package:floww/features/screens/home_screen/home_screen.dart';
 import 'package:floww/features/screens/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import 'app_route_strings.dart';
 

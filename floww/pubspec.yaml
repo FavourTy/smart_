@@ -83,9 +83,9 @@ flutter:
   #         style: italic
      - family: Caros
        fonts:
-         - asset: assets/fonts/caros_bold.otf
-         - asset: fonts/fonts/caros_medium.otf
-         - asset: fonts/fonts/caros_extra_bold.otf
+         - asset: assets/fonts/caros_bold.ttf
+         - asset: assets/fonts/caros_medium.ttf
+         - asset: assets/fonts/caros_extra_bold.ttf
     
      - family: Circular Std
        fonts:

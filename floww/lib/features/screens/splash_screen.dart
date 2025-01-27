@@ -1,7 +1,5 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:floww/features/screens/authentication/sign_up_screen/sign_up_screen.dart';
 import 'package:floww/shared/app_assets.dart';
-import 'package:floww/shared/custom_widget/app_button.dart';
+import 'package:floww/shared/constants.dart';
 
 import 'package:flutter/material.dart';
 
@@ -23,16 +21,20 @@ class _SplashScreenState extends State<SplashScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AnimatedSplashScreen(
-              splashTransition: SplashTransition.rotationTransition,
-              splash: AppAssets.message,
-              nextScreen: SignUpScreen()),
+          Center(
+            child: Image.asset(
+              AppAssets.message,
+              height: 100,
+            ),
+          ),
           SizedBox(
             height: 20,
           ),
-          Text("Floww"),
-          SizedBox(
-            height: 20,
+          Center(
+            child: Text(
+              "Floww",
+              style: splashStyle,
+            ),
           ),
         ],
       ),

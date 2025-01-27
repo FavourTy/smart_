@@ -1,4 +1,5 @@
 import 'package:floww/shared/app_colors.dart';
+import 'package:floww/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
@@ -17,7 +18,12 @@ class AppButton extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(text)],
+          children: [
+            Text(
+              text,
+              style: buttonTextStyle,
+            ),
+          ],
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:floww/shared/app_colors.dart';
+import 'package:floww/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,13 +10,15 @@ class AppTextInputField extends StatelessWidget {
       this.controller,
       this.text,
       this.inputFormatters,
-      this.validator});
+      this.validator,
+      this.suffix});
 
   final Key? fieldKey;
   final TextEditingController? controller;
   final String? text;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
+  final String? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +27,12 @@ class AppTextInputField extends StatelessWidget {
       controller: controller,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
+          suffixText: suffix ?? '',
+          suffixStyle: labelTextStyle.copyWith(color: AppColors.primaryColor),
           filled: true,
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
           labelText: text,
+          labelStyle: labelTextStyle,
           border: OutlineInputBorder(borderSide: BorderSide.none),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.textFormFieldColor)),

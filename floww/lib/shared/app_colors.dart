@@ -11,4 +11,5 @@ class AppColors {
   static const Color textCardcolor = Color(0xFFF2F7FB);
   static const Color headingStyleColor = Colors.black;
   static const Color labelTextColor = Color(0xFFBDBDBD);
+  static const Color previewTextColor = Color(0xFF797C7B);
 }

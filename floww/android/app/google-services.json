@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "20961248483",
+    "project_id": "floww-bd952",
+    "storage_bucket": "floww-bd952.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20961248483:android:d514f726b6f51a559fb1d6",
+        "android_client_info": {
+          "package_name": "com.example.floww"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFGvcdPIt9Ll11opuGKVsrt0uRJQ9kKWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

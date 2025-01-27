@@ -32,6 +32,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+# Ignore firebase_options.dart (contains sensitive data)
+lib/firebase_options.dart
 
 # Symbolication related
 app.*.symbols

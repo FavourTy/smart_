@@ -15,11 +15,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final fireBaseService = FirebaseServices();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
             create: (_) =>
-                AuthenticationProvider(firebaseService: FirebaseServices()))
+                AuthenticationProvider(firebaseService: fireBaseService))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -29,7 +30,9 @@ class MyApp extends StatelessWidget {
         ),
         navigatorKey: AppRouter.navKey,
         onGenerateRoute: AppRouter.appRouter,
-        initialRoute: AppRouteStrings.loginScreen,
+        initialRoute: fireBaseService.auth.currentUser != null
+            ? AppRouteStrings.bottomNav
+            : AppRouteStrings.loginScreen,
       ),
     );
   }

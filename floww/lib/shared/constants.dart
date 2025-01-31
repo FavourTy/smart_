@@ -54,3 +54,6 @@ const tabBarTextStyle = TextStyle(
     fontFamily: "Inter",
     fontWeight: FontWeight.w400,
     fontSize: 16.0);
+
+final emailRegex = RegExp(
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");

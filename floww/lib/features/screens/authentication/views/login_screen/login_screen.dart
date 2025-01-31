@@ -3,6 +3,7 @@ import 'package:floww/shared/app_colors.dart';
 import 'package:floww/shared/custom_widget/app_button.dart';
 import 'package:floww/shared/navigation/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../shared/constants.dart';
@@ -19,7 +20,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final _formKey = GlobalKey();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +62,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   AppTextInputField(
                     controller: emailController,
                     text: "Email",
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z@._-]'))
+                    ],
+                    validator: (a) {
+                      if (!emailRegex.hasMatch(a ?? "")) {
+                        return "Invalid Email";
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: 20,
@@ -69,6 +79,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: passwordController,
                     text: "Password",
                     suffix: "Show",
+                    inputFormatters: [
+                      FilteringTextInputFormatter.deny(RegExp(r' '))
+                    ],
+                    validator: (a) =>
+                        (a ?? ' ').isNotEmpty ? null : "Invalid password",
                   ),
                   SizedBox(
                     height: 100,
@@ -84,9 +99,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     AppButton(
                         text: "Login",
                         onTap: () async {
-                          await value.login(
-                              email: emailController.text,
-                              password: passwordController.text);
+                          if (_formKey.currentState?.validate() ?? false) {
+                            final a = await value.login(
+                                email: emailController.text,
+                                password: passwordController.text);
+                            if (a.error != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(a.error ?? " ")));
+                            } else {
+                              AppRouter.pushAndClear(AppRouteStrings.bottomNav);
+                            }
+                          }
                         }),
                   SizedBox(
                     height: 20,

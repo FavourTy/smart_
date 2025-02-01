@@ -11,20 +11,23 @@ class AppTextInputField extends StatelessWidget {
       this.text,
       this.inputFormatters,
       this.validator,
-      this.suffix});
+      this.suffix,
+      this.myFocusNode});
 
   final Key? fieldKey;
   final TextEditingController? controller;
   final String? text;
   final List<TextInputFormatter>? inputFormatters;
-  final String? Function(String?)? validator;
+  final Function(String?)? validator;
   final String? suffix;
+  final FocusNode? myFocusNode;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       key: key,
       controller: controller,
+      focusNode: myFocusNode,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
           suffixText: suffix ?? '',

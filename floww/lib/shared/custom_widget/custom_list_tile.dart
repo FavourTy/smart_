@@ -25,13 +25,12 @@ class CustomListTile extends StatelessWidget {
       subtitle: Text(subtititle),
       subtitleTextStyle: msgTextStyle,
       trailing: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 5),
         child: Column(
           children: [
             Text(text, style: msgTextStyle),
             Icon(
               Icons.circle,
-              size: 20,
               color: AppColors.primaryColor,
             )
           ],

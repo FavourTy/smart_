@@ -45,29 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: screenWidth,
                 height: screenHeight,
                 color: AppColors.primaryColor,
-                child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(children: [
-                      CustomHomeWidget(text: "Sam"),
-                      CustomHomeWidget(text: "mikun"),
-                      CustomHomeWidget(text: "Favy"),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CustomHomeWidget(text: "Lois"),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CustomHomeWidget(text: "Tayo"),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CustomHomeWidget(text: "pebbs"),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      CustomHomeWidget(text: "Savy"),
-                    ]))),
+                child: Row(children: [
+                  CustomHomeWidget(
+                    isFirst: true,
+                  ),
+                ])),
             Positioned(
                 top: screenHeight / 2 - (screenHeight * 2 / 4) / 2,
                 left: 0,

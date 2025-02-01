@@ -3,8 +3,8 @@ import 'package:floww/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({super.key, this.onTap, required this.text});
-  final VoidCallback? onTap;
+  const AppButton({super.key, required this.onTap, required this.text});
+  final VoidCallback onTap;
   final String text;
   @override
   Widget build(BuildContext context) {

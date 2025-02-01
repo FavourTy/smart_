@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../shared/app_colors.dart';
+import '../../../../../shared/app_colors.dart';
 
 class CustomerScreen extends StatelessWidget {
   const CustomerScreen({super.key});

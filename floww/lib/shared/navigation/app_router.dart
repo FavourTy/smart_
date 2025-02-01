@@ -1,8 +1,9 @@
-import 'package:floww/features/screens/authentication/login_screen/login_screen.dart';
-import 'package:floww/features/screens/authentication/sign_up_screen/sign_up_screen.dart';
+import 'package:floww/features/screens/authentication/views/login_screen/login_screen.dart';
+import 'package:floww/features/screens/authentication/views/sign_up_screen/sign_up_screen.dart';
 import 'package:floww/features/screens/chat_screen/chat_screen.dart';
-import 'package:floww/features/screens/home_screen/bottom_navigation.dart';
-import 'package:floww/features/screens/home_screen/home_screen.dart';
+import 'package:floww/features/screens/home/views/chat_page.dart';
+import 'package:floww/features/screens/home/views/home_screen/bottom_navigation.dart';
+import 'package:floww/features/screens/home/views/home_screen/home_screen.dart';
 import 'package:floww/features/screens/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -15,8 +16,6 @@ class AppRouter {
     switch (settings.name) {
       case AppRouteStrings.base:
         return CupertinoPageRoute(builder: (_) => const SplashScreen());
-      case AppRouteStrings.chatScreen:
-        return CupertinoPageRoute(builder: (_) => const ChatScreen());
       case AppRouteStrings.loginScreen:
         return CupertinoPageRoute(builder: (_) => const LoginScreen());
       case AppRouteStrings.signUpScreen:
@@ -26,13 +25,14 @@ class AppRouter {
       case AppRouteStrings.bottomNav:
         return CupertinoPageRoute(
             builder: (_) => const CustomButtomNavigationBar());
+      // case AppRouteStrings.chatPage:
+      //   return CupertinoPageRoute(builder: (_) => const ChatPage(receiverFullName: userData[''],
+
+      //   )
+      // );
       default:
         return CupertinoPageRoute(builder: (_) => const SizedBox());
     }
-  }
-
-  static void pushNamed({required String routeName, Object? arg}) {
-    navKey.currentState?.pushNamed(routeName, arguments: arg);
   }
 
   static void push(String name, {Object? arg}) {

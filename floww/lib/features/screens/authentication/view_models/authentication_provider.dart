@@ -24,12 +24,20 @@ class AuthenticationProvider extends ChangeNotifier {
     }
   }
 
-  Future<({bool registered, String? error})> register(
-      {required String email, required String password}) async {
+  Future<({bool registered, String? error})> register({
+    required String email,
+    required String password,
+    required String firstName,
+    required String lastName,
+  }) async {
     loading = true;
     notifyListeners();
-    final login =
-        await firebaseService.signIn(email: email, password: password);
+    final login = await firebaseService.signIn(
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        image: null);
     if (login.signedIn != null) {
       loading = false;
       notifyListeners();

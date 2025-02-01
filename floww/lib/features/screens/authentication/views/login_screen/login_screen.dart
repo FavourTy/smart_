@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:floww/features/screens/authentication/view_models/authentication_provider.dart';
 import 'package:floww/shared/app_colors.dart';
 import 'package:floww/shared/custom_widget/app_button.dart';
@@ -5,7 +7,6 @@ import 'package:floww/shared/navigation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../../shared/constants.dart';
 import '../../../../../shared/custom_widget/app_text_input_field.dart';
 import '../../../../../shared/navigation/app_route_strings.dart';
@@ -53,7 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Consumer<AuthenticationProvider>(
-          builder: (BuildContext context, value, Widget? child) {
+          builder: (BuildContext context, AuthenticationProvider authProvider,
+              Widget? child) {
             return Form(
               key: _formKey,
               child: Column(
@@ -82,13 +84,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     inputFormatters: [
                       FilteringTextInputFormatter.deny(RegExp(r' '))
                     ],
-                    validator: (a) =>
-                        (a ?? ' ').isNotEmpty ? null : "Invalid password",
+                    validator: (a) {
+                      if (a == null || a.isEmpty) {
+                        return "Password cannot be empty";
+                      } else if (a.length < 6) {
+                        return "Password must be at least 6 characters";
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: 100,
                   ),
-                  if (value.loading)
+                  if (authProvider.loading)
                     Center(
                       child: CircularProgressIndicator(
                         valueColor:
@@ -100,17 +108,37 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: "Login",
                         onTap: () async {
                           if (_formKey.currentState?.validate() ?? false) {
-                            final a = await value.login(
+                            final a = await authProvider.login(
                                 email: emailController.text,
                                 password: passwordController.text);
+
+                            print("Login Response: ${a.toString()}");
+
                             if (a.error != null) {
+                              print("Login Error: ${a.error}");
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(content: Text(a.error ?? " ")));
                             } else {
+                              print("Login Successful. Navigating to Home...");
                               AppRouter.pushAndClear(AppRouteStrings.bottomNav);
                             }
                           }
-                        }),
+                        }
+
+                        // onTap: () async {
+                        //   if (_formKey.currentState?.validate() ?? false) {
+                        //     final a = await authProvider.login(
+                        //         email: emailController.text,
+                        //         password: passwordController.text);
+                        //     if (a.error != null) {
+                        //       ScaffoldMessenger.of(context).showSnackBar(
+                        //           SnackBar(content: Text(a.error ?? " ")));
+                        //     } else {
+                        //       AppRouter.pushAndClear(AppRouteStrings.bottomNav);
+                        //     }
+                        //   }
+                        // }
+                        ),
                   SizedBox(
                     height: 20,
                   ),

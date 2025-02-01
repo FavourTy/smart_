@@ -15,10 +15,13 @@ class FirebaseServices {
   }
 
   final List<String> profileImages = [
-    "https://example.com/image1.png",
-    "https://example.com/image2.png",
-    "https://example.com/image3.png",
-    "https://example.com/image4.png"
+    "https://unsplash.com/photos/a-man-covering-his-face-with-his-hands-bUAyGFl0hr4",
+    "https://unsplash.com/photos/a-room-that-has-a-bunch-of-pictures-on-the-wall-nk0k9RxCrp4",
+    "https://unsplash.com/photos/a-neon-sign-that-says-make-yourself-on-priority-u_SSajnrm60",
+    "https://unsplash.com/photos/a-small-white-and-black-object-in-a-field-I6y-lF-OZMY",
+    "https://unsplash.com/photos/a-couple-of-people-standing-on-top-of-a-beach-_FzFR_GT8As",
+    "https://unsplash.com/photos/a-couple-of-horses-that-are-standing-in-the-dirt-DhvN-is1ntk",
+    "https://unsplash.com/photos/a-view-of-a-ski-resort-from-the-top-of-a-hill-GIBekCz0MjU",
   ];
 
   Future<({bool loggedIn, String? error})> login(
@@ -103,5 +106,11 @@ class FirebaseServices {
     //   //e.toString means casting the error to string
     //   return (signedIn: false, error: e.toString());
     // }
+  }
+
+  Future<void> logout() async {
+    try {
+      await auth.signOut();
+    } catch (_) {}
   }
 }

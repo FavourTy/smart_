@@ -122,8 +122,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       inputFormatters: [
                         FilteringTextInputFormatter.deny(RegExp(r' '))
                       ],
-                      validator: (a) =>
-                          (a ?? ' ').isNotEmpty ? null : "Invalid password",
+                      validator: (a) {
+                        if (a == null || a.isEmpty) {
+                          return "Password cannot be empty";
+                        } else if (a.length < 6) {
+                          return "Password must be at least 6 characters";
+                        }
+                        return null;
+                      },
                     ),
                     SizedBox(
                       height: 20,

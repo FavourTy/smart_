@@ -1,5 +1,6 @@
 import 'package:floww/features/screens/authentication/view_models/authentication_provider.dart';
 import 'package:floww/shared/app_colors.dart';
+import 'package:floww/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,13 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.secColor,
+        title: Text(
+          "Settings",
+          style: homeTextStyle.copyWith(color: AppColors.headingStyleColor),
+        ),
+      ),
       backgroundColor: AppColors.backgroundColor,
       body: Consumer<AuthenticationProvider>(builder: (BuildContext context,
           AuthenticationProvider authProvider, Widget? child) {

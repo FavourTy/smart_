@@ -12,7 +12,8 @@ class AppTextInputField extends StatelessWidget {
       this.inputFormatters,
       this.validator,
       this.suffix,
-      this.myFocusNode});
+      this.myFocusNode,
+      this.hintText});
 
   final Key? fieldKey;
   final TextEditingController? controller;
@@ -21,6 +22,7 @@ class AppTextInputField extends StatelessWidget {
   final Function(String?)? validator;
   final String? suffix;
   final FocusNode? myFocusNode;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +38,13 @@ class AppTextInputField extends StatelessWidget {
           contentPadding: EdgeInsets.symmetric(horizontal: 10),
           labelText: text,
           labelStyle: labelTextStyle,
+          hintText: hintText,
+          hintStyle: labelTextStyle,
           border: OutlineInputBorder(borderSide: BorderSide.none),
           focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.textFormFieldColor)),
-          errorBorder: OutlineInputBorder(),
+          errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: AppColors.errorColor)),
           enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
           focusedErrorBorder: OutlineInputBorder(),
           fillColor: AppColors.textFormFieldfillColor),

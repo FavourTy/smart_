@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:floww/shared/app_assets.dart';
+import 'package:floww/shared/constants.dart';
 import 'package:floww/shared/custom_widget/app_text_input_field.dart';
 import 'package:floww/shared/custom_widget/chat_bubble.dart';
+import 'package:floww/shared/navigation/app_route_strings.dart';
+import 'package:floww/shared/navigation/app_router.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../services/chat_services.dart';
 import '../../../../services/firebase_services.dart';
 import '../../../../shared/app_colors.dart';
@@ -30,9 +34,7 @@ class _ChatPageState extends State<ChatPage> {
   final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
     myFocusNode.addListener(() {
       if (myFocusNode.hasFocus) {
         //cause a delay so that the keyboard has time to show up
@@ -52,7 +54,6 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     myFocusNode.dispose();
     _textController.dispose();
@@ -74,13 +75,31 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        leading: CircleAvatar(
-          radius: 17,
-          backgroundImage: NetworkImage(widget.image),
-        ),
-        backgroundColor: AppColors.backgroundColor,
-        title: Text(widget.receiverFullName),
-      ),
+          leading: GestureDetector(
+              onTap: () {
+                AppRouter.pop(AppRouteStrings.bottomNav);
+              },
+              child: SvgPicture.asset(AppAssets.backSvg)),
+          backgroundColor: AppColors.backgroundColor,
+          title: Row(
+            children: [
+              CircleAvatar(
+                radius: 17,
+                backgroundImage: NetworkImage(widget.image),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.receiverFullName,
+                    style: homeTextStyle.copyWith(
+                        color: AppColors.headingStyleColor),
+                  ),
+                  Text("active now", style: msgTextStyle)
+                ],
+              ),
+            ],
+          )),
       body: Column(
         children: [
           Expanded(child: _buildMsgBody()),
@@ -135,17 +154,18 @@ class _ChatPageState extends State<ChatPage> {
           ],
         ));
     //is current user
-
-    //build UserInput
   }
 
+  //build UserInput
   Widget _buildUserInput() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 50),
       child: Row(
         children: [
+          SvgPicture.asset(AppAssets.attachmentSvg),
           Expanded(
               child: AppTextInputField(
+            hintText: "write your message",
             myFocusNode: myFocusNode,
             controller: _textController,
           )),

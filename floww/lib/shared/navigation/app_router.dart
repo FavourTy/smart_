@@ -1,7 +1,5 @@
 import 'package:floww/features/screens/authentication/views/login_screen/login_screen.dart';
 import 'package:floww/features/screens/authentication/views/sign_up_screen/sign_up_screen.dart';
-import 'package:floww/features/screens/chat_screen/chat_screen.dart';
-import 'package:floww/features/screens/home/views/chat_page.dart';
 import 'package:floww/features/screens/home/views/home_screen/bottom_navigation.dart';
 import 'package:floww/features/screens/home/views/home_screen/home_screen.dart';
 import 'package:floww/features/screens/splash_screen.dart';

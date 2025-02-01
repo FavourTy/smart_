@@ -49,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   CustomHomeWidget(
                     isFirst: true,
                   ),
+                  SizedBox(width: 5)
                 ])),
             Positioned(
                 top: screenHeight / 2 - (screenHeight * 2 / 4) / 2,

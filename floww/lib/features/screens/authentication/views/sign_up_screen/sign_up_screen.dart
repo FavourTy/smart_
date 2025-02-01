@@ -38,8 +38,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
           "Sign Up",
           style: headingStyle,
         ),
-        leading: IconButton(
-            onPressed: () {}, icon: SvgPicture.asset(AppAssets.cancelSvg)),
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: IconButton(
+              onPressed: () {}, icon: SvgPicture.asset(AppAssets.cancelSvg)),
+        ),
         // leading:
         actions: [
           Padding(

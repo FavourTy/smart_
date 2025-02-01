@@ -12,4 +12,5 @@ class AppColors {
   static const Color headingStyleColor = Colors.black;
   static const Color labelTextColor = Color(0xFFBDBDBD);
   static const Color previewTextColor = Color(0xFF797C7B);
+  static const Color errorColor = Colors.red;
 }

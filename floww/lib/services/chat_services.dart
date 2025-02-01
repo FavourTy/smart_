@@ -9,27 +9,37 @@ class ChatServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   //get user stream
   Stream<List<Map<String, dynamic>>> getUsers() {
-    return _firebaseFirestore.collection("users").snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) {
+    return _firebaseFirestore.collection("Users").snapshots().map((snapshot) {
+      final users = snapshot.docs.map((doc) {
         final user = doc.data();
         return user;
       }).toList();
+      return users;
     });
   }
 
+  // Stream<List<Map<String, dynamic>>> getUsers() {
+  //   return _firebaseFirestore.collection("users").snapshots().map((snapshot) {
+  //     return snapshot.docs.map((doc) {
+  //       final user = doc.data();
+  //       return user;
+  //     }).toList();
+  //   });
+  // }
+
   //send msgs
-  Future<void> SendMsg(String receiverId, message) async {
+  Future<void> sendMsg(String receiverId, message) async {
     //get Current user
     final String currentUserID = _auth.currentUser!.uid;
     final String currentUserEmail = _auth.currentUser!.email!;
-    final Timestamp _timeStamp = Timestamp.now();
+    final Timestamp timeStamp = Timestamp.now();
     //create a new msg
     Message newMessage = Message(
         senderID: currentUserID,
         message: message,
         receiverID: receiverId,
         senderEmail: currentUserEmail,
-        timestamp: _timeStamp);
+        timestamp: timeStamp);
 
     //construct chat room id for the two users(sorted to ensure uniqueness)
     List<String> ids = [currentUserID, receiverId];

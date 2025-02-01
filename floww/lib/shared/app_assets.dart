@@ -18,4 +18,5 @@ class AppAssets {
   static const String msgSvg = "${_svgBase}msg.svg";
   static const String searchSvg = "${_svgBase}search.svg";
   static const String settingsSvg = "${_svgBase}settings.svg";
+  static const String backSvg = "${_svgBase}back.svg";
 }

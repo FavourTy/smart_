@@ -1,9 +1,11 @@
-import 'package:floww/features/screens/home_screen/customer_screen.dart';
-import 'package:floww/features/screens/home_screen/home_screen.dart';
-import 'package:floww/features/screens/home_screen/settings_screen.dart';
+import 'package:floww/features/screens/home/views/home_screen/customer_screen.dart';
+import 'package:floww/features/screens/home/views/home_screen/home_screen.dart';
+import 'package:floww/features/screens/home/views/home_screen/settings_screen.dart';
+import 'package:floww/shared/app_assets.dart';
 import 'package:floww/shared/app_colors.dart';
 import 'package:floww/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomButtomNavigationBar extends StatefulWidget {
   const CustomButtomNavigationBar({super.key});
@@ -38,17 +40,17 @@ class _CustomButtomNavigationBarState extends State<CustomButtomNavigationBar> {
           selectedLabelStyle: homeTextStyle.copyWith(fontSize: 16),
           unselectedLabelStyle: tabBarTextStyle,
           selectedItemColor: AppColors.primaryColor,
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.textsms),
+              icon: SvgPicture.asset(AppAssets.msgSvg),
               label: "Message",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded),
+              icon: SvgPicture.asset(AppAssets.customerSvg),
               label: "Customers",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
+              icon: SvgPicture.asset(AppAssets.settingsSvg),
               label: "Settings",
             )
           ]),

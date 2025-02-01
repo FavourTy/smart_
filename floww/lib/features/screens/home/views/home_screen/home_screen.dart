@@ -1,10 +1,10 @@
+import 'package:floww/shared/app_assets.dart';
 import 'package:floww/shared/app_colors.dart';
 import 'package:floww/shared/constants.dart';
 import 'package:floww/shared/custom_widget/custom_home_widget.dart';
 import 'package:floww/shared/custom_widget/custom_list_tile.dart';
 import 'package:flutter/material.dart';
-
-import '../../../shared/app_assets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,10 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           "Home",
           style: homeTextStyle,
         ),
-        leading: Icon(
-          Icons.search,
-          color: AppColors.secColor,
-        ),
+        leading: SvgPicture.asset(AppAssets.searchSvg),
         // leading:
         actions: [
           Padding(

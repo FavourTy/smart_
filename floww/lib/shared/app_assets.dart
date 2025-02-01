@@ -9,4 +9,13 @@ class AppAssets {
   static const String message = "${_base}message.png";
   static const String search = "${_base}search.png";
   static const String settings = "${_base}settings.png";
+
+  static const String _svgBase = "assets/svgs/";
+  static const String attachmentSvg = "${_svgBase}attachment.svg";
+  static const String cancelSvg = "${_svgBase}cancel.svg";
+  static const String customerSvg = "${_svgBase}customer.svg";
+  static const String fileSvg = "${_svgBase}file.svg";
+  static const String msgSvg = "${_svgBase}msg.svg";
+  static const String searchSvg = "${_svgBase}search.svg";
+  static const String settingsSvg = "${_svgBase}settings.svg";
 }

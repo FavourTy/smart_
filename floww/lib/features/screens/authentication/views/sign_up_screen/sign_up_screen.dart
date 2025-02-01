@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:floww/features/screens/authentication/view_models/authentication_provider.dart';
+import 'package:floww/shared/app_assets.dart';
 import 'package:floww/shared/app_colors.dart';
 import 'package:floww/shared/constants.dart';
 import 'package:floww/shared/custom_widget/app_button.dart';
@@ -9,6 +10,7 @@ import 'package:floww/shared/navigation/app_route_strings.dart';
 import 'package:floww/shared/navigation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -36,8 +38,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           "Sign Up",
           style: headingStyle,
         ),
-        leading:
-            IconButton(onPressed: () {}, icon: Icon(Icons.cancel_outlined)),
+        leading: IconButton(
+            onPressed: () {}, icon: SvgPicture.asset(AppAssets.cancelSvg)),
         // leading:
         actions: [
           Padding(

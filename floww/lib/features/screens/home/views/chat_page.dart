@@ -9,9 +9,13 @@ import '../../../../shared/app_colors.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage(
-      {super.key, required this.receiverFullName, required this.receiverId});
+      {super.key,
+      required this.receiverFullName,
+      required this.receiverId,
+      required this.image});
   final String receiverFullName;
   final String receiverId;
+  final String image;
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -70,6 +74,10 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        leading: CircleAvatar(
+          radius: 17,
+          backgroundImage: NetworkImage(widget.image),
+        ),
         backgroundColor: AppColors.backgroundColor,
         title: Text(widget.receiverFullName),
       ),

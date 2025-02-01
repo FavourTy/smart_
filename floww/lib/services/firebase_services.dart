@@ -14,6 +14,13 @@ class FirebaseServices {
     return auth.currentUser;
   }
 
+  final List<String> profileImages = [
+    "https://example.com/image1.png",
+    "https://example.com/image2.png",
+    "https://example.com/image3.png",
+    "https://example.com/image4.png"
+  ];
+
   Future<({bool loggedIn, String? error})> login(
       {required String email, required String password}) async {
     try {
@@ -55,10 +62,14 @@ class FirebaseServices {
           email: email, password: password);
 
       await auth.currentUser?.reload();
+
+      final String randomProfileImage =
+          profileImages[Random().nextInt(profileImages.length)];
       _firestore.collection("Users").doc(user.user!.uid).set({
         'uid': user.user!.uid,
         'firstName': firstName,
         'lastName': lastName,
+        'profileImage': randomProfileImage,
       });
       // Ensure user is actually signed in
       if (auth.currentUser == null) {

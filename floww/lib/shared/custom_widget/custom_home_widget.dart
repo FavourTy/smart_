@@ -54,11 +54,13 @@ class CustomHomeWidget extends StatelessWidget {
     if (userData['email'] != _firebaseServices.getCurrentUser()!.email) {
       return UserColumn(
         text: userData['firstName'],
+        image: userData['profileImage'],
         onTap: () {
           Navigator.push(
               context,
               CupertinoPageRoute(
                   builder: (context) => ChatPage(
+                        image: userData['profileImage'],
                         receiverFullName:
                             '${userData['firstName']} ${userData['lastName']} ',
                         receiverId: userData['uid'],

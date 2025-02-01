@@ -7,9 +7,11 @@ class UserColumn extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
+    required this.image,
   });
   final String text;
   final VoidCallback onTap;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class UserColumn extends StatelessWidget {
       child: Column(children: [
         CircleAvatar(
           radius: 27,
-          backgroundColor: AppColors.backgroundColor,
+          backgroundImage: NetworkImage(image),
         ),
         SizedBox(
           height: 10,

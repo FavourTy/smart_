@@ -7,9 +7,9 @@ import 'package:floww/shared/navigation/app_route_strings.dart';
 import 'package:floww/shared/navigation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../services/chat_services.dart';
-import '../../../../services/firebase_services.dart';
-import '../../../../shared/app_colors.dart';
+import '../../../../../services/chat_services.dart';
+import '../../../../../services/firebase_services.dart';
+import '../../../../../shared/app_colors.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage(
@@ -87,6 +87,7 @@ class _ChatPageState extends State<ChatPage> {
                 radius: 17,
                 backgroundImage: NetworkImage(widget.image),
               ),
+              SizedBox(width: 5),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -149,7 +150,8 @@ class _ChatPageState extends State<ChatPage> {
           crossAxisAlignment:
               isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
-            ChatBubble(msg: data["message"], isCurrentUser: isCurrentUser)
+            ChatBubble(msg: data["message"], isCurrentUser: isCurrentUser),
+            SizedBox(height: 5),
             // Text(data["message"]),
           ],
         ));
@@ -159,10 +161,11 @@ class _ChatPageState extends State<ChatPage> {
   //build UserInput
   Widget _buildUserInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50),
+      padding: const EdgeInsets.only(bottom: 30, left: 10),
       child: Row(
         children: [
           SvgPicture.asset(AppAssets.attachmentSvg),
+          SizedBox(width: 7),
           Expanded(
               child: AppTextInputField(
             hintText: "write your message",

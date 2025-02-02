@@ -68,4 +68,27 @@ class ChatServices {
         .orderBy("timestamp", descending: false)
         .snapshots();
   }
+
+  Stream<Message?> getLastMsg({required String otherUserID}) {
+    //construct a chatroom ID for the two users
+    try {
+      List ids = [_auth.currentUser?.uid, otherUserID];
+      ids.sort();
+      String chatID = ids.join("_");
+      return _firebaseFirestore
+          .collection("chat_rooms")
+          .doc(chatID)
+          .collection("messages")
+          .orderBy("timestamp", descending: true)
+          .limit(1)
+          .snapshots()
+          .map((snapshot) {
+        if (snapshot.docs.isEmpty) return null;
+        return Message.fromMap(snapshot.docs.first.data());
+      });
+    } catch (e) {
+      print("Could not fetch messages: $e");
+      return Stream.value(null);
+    }
+  }
 }

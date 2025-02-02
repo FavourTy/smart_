@@ -14,13 +14,14 @@ class FirebaseServices {
   }
 
   final List<String> profileImages = [
-    "https://unsplash.com/photos/a-man-covering-his-face-with-his-hands-bUAyGFl0hr4",
-    "https://unsplash.com/photos/a-room-that-has-a-bunch-of-pictures-on-the-wall-nk0k9RxCrp4",
-    "https://unsplash.com/photos/a-neon-sign-that-says-make-yourself-on-priority-u_SSajnrm60",
-    "https://unsplash.com/photos/a-small-white-and-black-object-in-a-field-I6y-lF-OZMY",
-    "https://unsplash.com/photos/a-couple-of-people-standing-on-top-of-a-beach-_FzFR_GT8As",
-    "https://unsplash.com/photos/a-couple-of-horses-that-are-standing-in-the-dirt-DhvN-is1ntk",
-    "https://unsplash.com/photos/a-view-of-a-ski-resort-from-the-top-of-a-hill-GIBekCz0MjU",
+    "https://images.pexels.com/photos/213780/pexels-photo-213780.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/2899097/pexels-photo-2899097.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "https://images.pexels.com/photos/2820884/pexels-photo-2820884.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        "https://images.unsplash.com/photo-1737920406899-e1cabc43a6a7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxOXx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1736754074555-54b6abcb2fb4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzMHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1735252723552-138dc3fb6f14?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0M3x8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1737958944516-5f5a030b7e5d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1OXx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1737991864069-508dd72239fc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw2MHx8fGVufDB8fHx8fA%3D%3D"
   ];
 
   Future<({bool loggedIn, String? error})> login(
@@ -67,7 +68,7 @@ class FirebaseServices {
 
       final String randomProfileImage =
           profileImages[Random().nextInt(profileImages.length)];
-      _firestore.collection("users").doc(user.user!.uid).set({
+      _firestore.collection("Users").doc(user.user!.uid).set({
         'uid': user.user!.uid,
         'email': email,
         'firstName': firstName,

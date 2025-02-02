@@ -1,4 +1,4 @@
-import 'package:floww/features/screens/home/views/chat_page.dart';
+import 'package:floww/features/screens/home/views/home_screen/chat_page.dart';
 import 'package:floww/services/chat_services.dart';
 import 'package:floww/services/firebase_services.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,13 +43,16 @@ class _CustomHomeWidgetState extends State<CustomHomeWidget> {
           List<Map<String, dynamic>> users =
               List<Map<String, dynamic>>.from(snapshot.data as List);
           return ListView.builder(
-            padding: EdgeInsets.symmetric(
-                vertical: 40, horizontal: widget.isFirst ? 16 : 0),
+            padding: EdgeInsets.symmetric(vertical: 40, horizontal: 16),
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemCount: users.length,
             itemBuilder: (context, index) {
-              return _buildColumn(users[index], context);
+              return Padding(
+                padding: EdgeInsets.only(right: 10),
+                child: _buildColumn(users[index], context),
+              );
+              // return _buildColumn(users[index], context);
             },
           );
         }
@@ -84,7 +87,6 @@ class _CustomHomeWidgetState extends State<CustomHomeWidget> {
 
   Widget _buildColumn(Map<String, dynamic> userData, BuildContext context) {
     if (userData['email'] != _firebaseServices.getCurrentUser()!.email) {
-      print("Rendering User: $userData");
       return UserColumn(
         text: userData['firstName'],
         image: userData['profileImage'],

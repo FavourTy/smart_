@@ -7,35 +7,33 @@ class CustomListTile extends StatelessWidget {
       {super.key,
       required this.title,
       required this.subtititle,
-      required this.text});
+      required this.text,
+      required this.onTap,
+      required this.image});
   final String title;
   final String subtititle;
   final String text;
+  final VoidCallback onTap;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: CircleAvatar(
         radius: 26,
-        backgroundColor: AppColors.primaryColor,
+        backgroundImage: NetworkImage(image),
       ),
       title: Text(title),
       titleTextStyle:
           homeTextStyle.copyWith(color: AppColors.headingStyleColor),
-      subtitle: Text(subtititle),
-      subtitleTextStyle: msgTextStyle,
-      trailing: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        child: Column(
-          children: [
-            Text(text, style: msgTextStyle),
-            Icon(
-              Icons.circle,
-              color: AppColors.primaryColor,
-            )
-          ],
-        ),
+      subtitle: Text(
+        subtititle,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
       ),
+      subtitleTextStyle: msgTextStyle,
+      trailing: Text(text, style: msgTextStyle),
     );
   }
 }

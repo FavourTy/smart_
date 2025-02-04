@@ -20,6 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ChatServices _chatServices = ChatServices();
   final FirebaseServices _firebaseServices = FirebaseServices();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,12 +34,18 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: SvgPicture.asset(AppAssets.searchSvg),
         // leading:
         actions: [
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: CircleAvatar(
-                backgroundColor: AppColors.backgroundColor,
-                radius: 25,
-              ))
+          StreamBuilder<Object>(
+              stream: _chatServices.getUsers(),
+              builder: (context, snapshot) {
+                List<Map<String, dynamic>> users =
+                    List<Map<String, dynamic>>.from(snapshot.data as List);
+                return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    child: CircleAvatar(
+                      backgroundColor: AppColors.backgroundColor,
+                      radius: 25,
+                    ));
+              })
         ],
         automaticallyImplyLeading: false,
       ),

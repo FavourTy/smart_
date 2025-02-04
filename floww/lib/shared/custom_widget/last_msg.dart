@@ -56,8 +56,8 @@ class _AllChatsState extends State<AllChats> {
                 Message lastMessage = messageSnapshot.data!;
 
                 String formattedTime = lastMessage.timestamp != null
-                    ? DateFormat('hh:mm a').format(lastMessage.timestamp!
-                        .toDate()) // You can change the format as needed
+                    ? DateFormat('hh:mm a')
+                        .format(lastMessage.timestamp!.toDate())
                     : "No timestamp";
                 return CustomListTile(
                     image: user['profileImage'],

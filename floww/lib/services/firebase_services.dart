@@ -68,17 +68,18 @@ class FirebaseServices {
 
       final String randomProfileImage =
           profileImages[Random().nextInt(profileImages.length)];
-      _firestore.collection("Users").doc(user.user!.uid).set({
-        'uid': user.user!.uid,
-        'email': email,
-        'firstName': firstName,
-        'lastName': lastName,
-        'profileImage': randomProfileImage,
-      }).then((_) {
-        print("✅ User added to Firestore: ${user.user!.uid}");
-      }).catchError((error) {
-        print("🔥 Error saving user: $error");
-      });
+      _firestore
+          .collection("Users")
+          .doc(user.user!.uid)
+          .set({
+            'uid': user.user!.uid,
+            'email': email,
+            'firstName': firstName,
+            'lastName': lastName,
+            'profileImage': randomProfileImage,
+          })
+          .then((_) {})
+          .catchError((error) {});
       // Ensure user is actually signed in
       if (auth.currentUser == null) {
         return (signedIn: false, error: "Sign-up failed. Please try again.");

@@ -2,10 +2,10 @@ import 'package:floww/features/screens/home/models/message.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:intl/intl.dart';
 import '../../features/screens/home/views/home_screen/chat_page.dart';
 import '../../services/chat_services.dart';
 import 'custom_list_tile.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class AllChats extends StatefulWidget {
   const AllChats({super.key});
@@ -56,25 +56,42 @@ class _AllChatsState extends State<AllChats> {
                 Message lastMessage = messageSnapshot.data!;
 
                 String formattedTime = lastMessage.timestamp != null
-                    ? DateFormat('hh:mm a')
-                        .format(lastMessage.timestamp!.toDate())
+                    ? timeago.format(lastMessage.timestamp!.toDate())
                     : "No timestamp";
-                return CustomListTile(
-                    image: user['profileImage'],
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ChatPage(
-                                    image: user['profileImage'],
-                                    receiverFullName:
-                                        '${user['firstName']} ${user['lastName']} ',
-                                    receiverId: user['uid'],
-                                  )));
-                    },
-                    title: receiverFullName,
-                    subtititle: lastMessage.message,
-                    text: formattedTime);
+                return Dismissible(
+                  key: Key(otherUserID),
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    decoration: BoxDecoration(),
+                    alignment: Alignment.centerRight,
+                    child: Icon(Icons.delete),
+                  ),
+                  onDismissed: (direction) {
+                    _chatServices.deleteMessage(
+                      currentUserID,
+                      otherUserID,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Chat deleted")),
+                    );
+                  },
+                  child: CustomListTile(
+                      image: user['profileImage'],
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChatPage(
+                                      image: user['profileImage'],
+                                      receiverFullName:
+                                          '${user['firstName']} ${user['lastName']} ',
+                                      receiverId: user['uid'],
+                                    )));
+                      },
+                      title: receiverFullName,
+                      subtititle: lastMessage.message,
+                      text: formattedTime),
+                );
               },
             );
           },

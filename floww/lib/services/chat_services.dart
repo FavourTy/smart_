@@ -103,4 +103,22 @@ class ChatServices {
     } catch (e) {}
     return null;
   }
+
+  Future<void> deleteMessage(String userID, String otherUserID) async {
+    try {
+      // Construct chat room ID
+      List<String> ids = [userID, otherUserID];
+      ids.sort();
+      String chatRoomID = ids.join('_');
+      // Delete message from Firestore
+      await _firebaseFirestore
+          .collection("chat_rooms")
+          .doc(chatRoomID)
+          .delete();
+
+      print("Message deleted successfully!");
+    } catch (e) {
+      print("Error deleting message: $e");
+    }
+  }
 }

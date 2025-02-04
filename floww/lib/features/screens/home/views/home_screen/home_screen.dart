@@ -1,14 +1,12 @@
-import 'package:floww/services/firebase_services.dart';
+import 'package:floww/features/screens/home/view_models/chat_provider.dart';
 import 'package:floww/shared/app_assets.dart';
 import 'package:floww/shared/app_colors.dart';
 import 'package:floww/shared/constants.dart';
 import 'package:floww/shared/custom_widget/custom_home_widget.dart';
-import 'package:floww/shared/custom_widget/custom_list_tile.dart';
 import 'package:floww/shared/custom_widget/last_msg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import '../../../../../services/chat_services.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,9 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final ChatServices _chatServices = ChatServices();
-  final FirebaseServices _firebaseServices = FirebaseServices();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,21 +26,46 @@ class _HomeScreenState extends State<HomeScreen> {
           "Home",
           style: homeTextStyle,
         ),
-        leading: SvgPicture.asset(AppAssets.searchSvg),
+        leading: SizedBox(
+            height: 20,
+            width: 20,
+            child: SvgPicture.asset(AppAssets.searchSvg)),
         // leading:
         actions: [
-          StreamBuilder<Object>(
-              stream: _chatServices.getUsers(),
-              builder: (context, snapshot) {
-                List<Map<String, dynamic>> users =
-                    List<Map<String, dynamic>>.from(snapshot.data as List);
-                return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: CircleAvatar(
-                      backgroundColor: AppColors.backgroundColor,
-                      radius: 25,
-                    ));
-              })
+          Consumer<ChatProvider>(builder:
+              (BuildContext context, ChatProvider chatProvider, Widget? child) {
+            return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: FutureBuilder(
+                  future: chatProvider.fetchCurrentUserProfileImage(),
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String?> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor:
+                            Colors.grey, // Placeholder color while loading
+                      );
+                    } else if (snapshot.hasError) {
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor: Colors
+                            .grey, // Error state, you could add an error image or placeholder here
+                      );
+                    } else if (snapshot.hasData) {
+                      return CircleAvatar(
+                        backgroundImage: NetworkImage(snapshot.data!),
+                        radius: 25,
+                      );
+                    } else {
+                      return CircleAvatar(
+                        radius: 25,
+                        backgroundColor: AppColors.secColor,
+                      );
+                    }
+                  },
+                ));
+          })
         ],
         automaticallyImplyLeading: false,
       ),
@@ -58,9 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: screenWidth,
                 height: screenHeight,
                 color: AppColors.primaryColor,
-                child: Row(children: [
-                  CustomHomeWidget(),
-                ])),
+                child: CustomHomeWidget()),
             Positioned(
                 top: screenHeight / 2 - (screenHeight * 2 / 4) / 2,
                 left: 0,

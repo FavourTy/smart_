@@ -1,4 +1,6 @@
 import 'package:floww/features/screens/authentication/view_models/authentication_provider.dart';
+import 'package:floww/features/screens/home/view_models/chat_provider.dart';
+import 'package:floww/services/chat_services.dart';
 import 'package:floww/services/firebase_services.dart';
 import 'package:floww/shared/navigation/app_route_strings.dart';
 import 'package:floww/shared/navigation/app_router.dart';
@@ -22,11 +24,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseService = FirebaseServices();
+    final chatServices = ChatServices();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (_) =>
-                AuthenticationProvider(firebaseService: firebaseService))
+          create: (_) =>
+              AuthenticationProvider(firebaseService: firebaseService),
+        ),
+        ChangeNotifierProvider(
+            create: (_) => ChatProvider(chatservice: chatServices))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

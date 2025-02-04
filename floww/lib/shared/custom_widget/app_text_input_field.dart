@@ -26,28 +26,31 @@ class AppTextInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      key: key,
-      controller: controller,
-      focusNode: myFocusNode,
-      inputFormatters: inputFormatters,
-      decoration: InputDecoration(
-          suffixText: suffix ?? '',
-          suffixStyle: labelTextStyle.copyWith(color: AppColors.primaryColor),
-          filled: true,
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          labelText: text,
-          labelStyle: labelTextStyle,
-          hintText: hintText,
-          hintStyle: labelTextStyle,
-          border: OutlineInputBorder(borderSide: BorderSide.none),
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.textFormFieldColor)),
-          errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.errorColor)),
-          enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
-          focusedErrorBorder: OutlineInputBorder(),
-          fillColor: AppColors.textFormFieldfillColor),
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
+      child: TextFormField(
+        key: key,
+        controller: controller,
+        focusNode: myFocusNode,
+        inputFormatters: inputFormatters,
+        decoration: InputDecoration(
+            suffixText: suffix ?? '',
+            suffixStyle: labelTextStyle.copyWith(color: AppColors.primaryColor),
+            filled: true,
+            contentPadding: EdgeInsets.symmetric(horizontal: 10),
+            labelText: text,
+            labelStyle: labelTextStyle,
+            hintText: hintText,
+            hintStyle: labelTextStyle,
+            border: OutlineInputBorder(borderSide: BorderSide.none),
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.textFormFieldColor)),
+            errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: AppColors.errorColor)),
+            enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
+            focusedErrorBorder: OutlineInputBorder(),
+            fillColor: AppColors.textFormFieldfillColor),
+      ),
     );
   }
 }

@@ -18,7 +18,6 @@ class CustomHomeWidget extends StatefulWidget {
 
 class _CustomHomeWidgetState extends State<CustomHomeWidget> {
   final ChatServices _chatServices = ChatServices();
-
   final FirebaseServices _firebaseServices = FirebaseServices();
   @override
   @override
@@ -39,7 +38,6 @@ class _CustomHomeWidgetState extends State<CustomHomeWidget> {
           if (!snapshot.hasData || snapshot.hasError) {
             return Center(child: Text("No users found!")); // Show empty message
           }
-
           List<Map<String, dynamic>> users =
               List<Map<String, dynamic>>.from(snapshot.data as List);
           return ListView.builder(

@@ -28,7 +28,7 @@ class ChatServices {
   // }
 
   //send msgs
-  Future<void> sendMsg(String receiverId, message) async {
+  Future<void> sendMsg(String receiverId, message, Timestamp timeStamp) async {
     //get Current user
     final String currentUserID = _auth.currentUser!.uid;
     final String currentUserEmail = _auth.currentUser!.email!;
@@ -45,7 +45,6 @@ class ChatServices {
     List<String> ids = [currentUserID, receiverId];
     ids.sort();
     String chatRooomID = ids.join('_');
-
     // add it to the database
     await _firebaseFirestore
         .collection("chat_rooms")
@@ -90,5 +89,18 @@ class ChatServices {
       print("Could not fetch messages: $e");
       return Stream.value(null);
     }
+  }
+
+  Future<String?> getUserProfileImage() async {
+    try {
+      String currentUserId = _auth.currentUser!.uid;
+      DocumentSnapshot currentUserDoc =
+          await _firebaseFirestore.collection("Users").doc(currentUserId).get();
+
+      if (currentUserDoc.exists && currentUserDoc["profileImage"] != null) {
+        return currentUserDoc["profileImage"];
+      }
+    } catch (e) {}
+    return null;
   }
 }

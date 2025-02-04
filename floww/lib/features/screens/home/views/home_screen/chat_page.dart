@@ -10,6 +10,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../services/chat_services.dart';
 import '../../../../../services/firebase_services.dart';
 import '../../../../../shared/app_colors.dart';
+import 'package:intl/intl.dart';
+
+import '../../models/message.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage(
@@ -63,7 +66,8 @@ class _ChatPageState extends State<ChatPage> {
   void sendMsg() async {
     if (_textController.text.isNotEmpty) {
       //snd the message
-      await _chatservices.sendMsg(widget.receiverId, _textController.text);
+      await _chatservices.sendMsg(
+          widget.receiverId, _textController.text, Timestamp.now());
       _textController.clear();
 
       scrollDown;
@@ -75,11 +79,15 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-          leading: GestureDetector(
-              onTap: () {
-                AppRouter.pop(AppRouteStrings.bottomNav);
-              },
-              child: SvgPicture.asset(AppAssets.backSvg)),
+          leading: SizedBox(
+            height: 20,
+            width: 20,
+            child: GestureDetector(
+                onTap: () {
+                  AppRouter.pop(AppRouteStrings.bottomNav);
+                },
+                child: SvgPicture.asset(AppAssets.backSvg)),
+          ),
           backgroundColor: AppColors.backgroundColor,
           title: Row(
             children: [
@@ -144,14 +152,53 @@ class _ChatPageState extends State<ChatPage> {
         data['senderID'] == _firebaseServices.getCurrentUser()!.uid;
     var alignment =
         isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+    Message lastMessage =
+        Message.fromMap(data); // Assuming you have a Message model
+    String formattedTime = lastMessage.timestamp != null
+        ? DateFormat('hh:mm a').format(lastMessage.timestamp!.toDate())
+        : "No timestamp";
     return Container(
         alignment: alignment,
         child: Column(
           crossAxisAlignment:
               isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
+            !isCurrentUser
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 17,
+                          backgroundImage: NetworkImage(widget.image),
+                        ),
+                        SizedBox(width: 5),
+                        Text(widget.receiverFullName,
+                            style: homeTextStyle.copyWith(
+                                color: AppColors.headingStyleColor,
+                                fontSize: 14.0))
+                      ],
+                    ),
+                  )
+                : SizedBox(),
             ChatBubble(msg: data["message"], isCurrentUser: isCurrentUser),
+
             SizedBox(height: 5),
+            isCurrentUser
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: Text(
+                      formattedTime,
+                      style: msgTextStyle.copyWith(fontSize: 10),
+                    ),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(left: 80),
+                    child: Text(
+                      formattedTime,
+                      style: msgTextStyle.copyWith(fontSize: 10),
+                    ),
+                  )
             // Text(data["message"]),
           ],
         ));
@@ -161,7 +208,7 @@ class _ChatPageState extends State<ChatPage> {
   //build UserInput
   Widget _buildUserInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30, left: 10),
+      padding: const EdgeInsets.only(bottom: 30, left: 10, right: 10),
       child: Row(
         children: [
           SvgPicture.asset(AppAssets.attachmentSvg),
@@ -172,7 +219,13 @@ class _ChatPageState extends State<ChatPage> {
             myFocusNode: myFocusNode,
             controller: _textController,
           )),
-          IconButton(onPressed: sendMsg, icon: Icon(Icons.arrow_upward))
+          SizedBox(
+            width: 7,
+          ),
+          InkWell(
+            onTap: sendMsg,
+            child: SvgPicture.asset(AppAssets.sendSvg),
+          )
         ],
       ),
     );

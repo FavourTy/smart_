@@ -10,27 +10,32 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 12, right: 12),
-      child: Container(
-        padding: EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          borderRadius: isCurrentUser
-              ? BorderRadius.only(
-                  bottomLeft: Radius.circular(5),
-                  bottomRight: Radius.circular(5),
-                  topLeft: Radius.circular(5))
-              : BorderRadius.only(
-                  bottomLeft: Radius.circular(5),
-                  bottomRight: Radius.circular(5),
-                  topRight: Radius.circular(5)),
-          color: isCurrentUser
-              ? AppColors.primaryColor
-              : AppColors.textFormFieldfillColor,
-        ),
-        child: Text(msg,
-            style: isCurrentUser
-                ? msgTextStyle.copyWith(color: AppColors.secColor)
-                : msgTextStyle.copyWith(color: AppColors.headingStyleColor)),
+      padding: const EdgeInsets.only(left: 40, right: 12),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              borderRadius: isCurrentUser
+                  ? BorderRadius.only(
+                      bottomLeft: Radius.circular(5),
+                      bottomRight: Radius.circular(10),
+                      topLeft: Radius.circular(5))
+                  : BorderRadius.only(
+                      bottomLeft: Radius.circular(5),
+                      bottomRight: Radius.circular(10),
+                      topRight: Radius.circular(5)),
+              color: isCurrentUser
+                  ? AppColors.primaryColor
+                  : AppColors.textFormFieldfillColor,
+            ),
+            child: Text(msg,
+                style: isCurrentUser
+                    ? msgTextStyle.copyWith(color: AppColors.secColor)
+                    : msgTextStyle.copyWith(
+                        color: AppColors.headingStyleColor)),
+          ),
+        ],
       ),
     );
   }

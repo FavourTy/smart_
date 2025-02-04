@@ -1,16 +1,55 @@
 # floww
 
-A new Flutter project.
+Floww is a real-time chat application built with Flutter and Firebase, featuring user authentication, chat history, and profile images.
 
-## Getting Started
+## Features ✨
+- Firebase Authentication
+- Random Profile image Assignment 
+- Home Screen layout 
+  - Top section: Displays the last 10 users who registerd 
+  - Lower section: Displays users who have chatted with the current user.
+- Real- Time messaging
+- Swipe to delete chat 
+- TimeStamps
 
-This project is a starting point for a Flutter application.
+## Screenshots 📸
+![SplashScreen](./assets/screenshots/splash_screen.png)
+![loginScreen](./assets/screenshots/login.png)
+![signupScreen](./assets/screenshots/signup.png)
+![logoutScreen](./assets/screenshots/logout.png)
+![homeScreen](./assets/screenshots/homepage_1.png)
+![homeScreen](./assets/screenshots/homepage_2.png)
+![chatScreen](./assets/screenshots/chatpage1.png)
 
-A few resources to get you started if this is your first Flutter project:
+## A video showcasing the app's functionality 🎥
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation 🚀
+To set up the project locally, follow these steps:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/FavourTy/smart_/tree/main/floww
+
+2. Navigate to the project directory:
+   ```bash
+   cd floww
+
+3. Install the required dependencies:
+   ```bash
+   flutter pub get 
+
+4. Run the app:
+   ```bash
+   flutter run
+
+## Technologies Used 🛠️
+
+- Flutter
+- Dart
+- Figma
+- Firebase FireStore
+- Firebase Authentication
+
+## Future Improvements 🚀
+- implement online Status for users
+- improve ui

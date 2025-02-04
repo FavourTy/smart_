@@ -1,7 +1,11 @@
 import 'package:floww/features/screens/home/models/message.dart';
+import 'package:floww/shared/app_assets.dart';
+import 'package:floww/shared/app_colors.dart';
+import 'package:floww/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../features/screens/home/views/home_screen/chat_page.dart';
 import '../../services/chat_services.dart';
 import 'custom_list_tile.dart';
@@ -62,9 +66,10 @@ class _AllChatsState extends State<AllChats> {
                   key: Key(otherUserID),
                   direction: DismissDirection.endToStart,
                   background: Container(
-                    decoration: BoxDecoration(),
+                    decoration:
+                        BoxDecoration(color: AppColors.textFormFieldfillColor),
                     alignment: Alignment.centerRight,
-                    child: Icon(Icons.delete),
+                    child: SvgPicture.asset(AppAssets.deleteSvg),
                   ),
                   onDismissed: (direction) {
                     _chatServices.deleteMessage(
@@ -72,7 +77,13 @@ class _AllChatsState extends State<AllChats> {
                       otherUserID,
                     );
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Chat deleted")),
+                      SnackBar(
+                          content: Text(
+                            "Chat deleted",
+                            style: homeTextStyle.copyWith(
+                                color: AppColors.headingStyleColor),
+                          ),
+                          backgroundColor: AppColors.textFormFieldfillColor),
                     );
                   },
                   child: CustomListTile(

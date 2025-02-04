@@ -14,7 +14,8 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.secColor,
+        automaticallyImplyLeading: false,
+        backgroundColor: AppColors.backgroundColor,
         title: Text(
           "Settings",
           style: homeTextStyle.copyWith(color: AppColors.headingStyleColor),
@@ -27,15 +28,31 @@ class SettingsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IconButton(
-                onPressed: () {
-                  authProvider.logout().then((_) =>
-                      AppRouter.pushAndClear(AppRouteStrings.loginScreen));
-                },
-                icon: Icon(
-                  Icons.exit_to_app,
-                  color: Colors.black,
-                )),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Log out",
+                    style: homeTextStyle.copyWith(
+                        color: AppColors.headingStyleColor),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        authProvider.logout().then((_) =>
+                            AppRouter.pushAndClear(
+                                AppRouteStrings.loginScreen));
+                      },
+                      icon: Icon(
+                        Icons.exit_to_app,
+                        color: Colors.black,
+                      )),
+                ],
+              ),
+            ),
             Center(
               child: Icon(
                 Icons.settings,

@@ -20,4 +20,5 @@ class AppAssets {
   static const String settingsSvg = "${_svgBase}settings.svg";
   static const String backSvg = "${_svgBase}back.svg";
   static const String sendSvg = "${_svgBase}send.svg";
+  static const String deleteSvg = "${_svgBase}delete.svg";
 }

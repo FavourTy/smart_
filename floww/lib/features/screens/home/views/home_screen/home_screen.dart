@@ -26,10 +26,13 @@ class _HomeScreenState extends State<HomeScreen> {
           "Home",
           style: homeTextStyle,
         ),
-        leading: SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(AppAssets.searchSvg)),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: SizedBox(
+              height: 20,
+              width: 20,
+              child: SvgPicture.asset(AppAssets.searchSvg)),
+        ),
         // leading:
         actions: [
           Consumer<ChatProvider>(builder:

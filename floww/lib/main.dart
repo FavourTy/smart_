@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floww/features/screens/authentication/view_models/authentication_provider.dart';
+import 'package:floww/features/screens/authentication/views/sign_up_screen/sign_up_screen.dart';
 import 'package:floww/features/screens/home/view_models/chat_provider.dart';
+
 import 'package:floww/services/chat_services.dart';
 import 'package:floww/services/firebase_services.dart';
 import 'package:floww/shared/navigation/app_route_strings.dart';
@@ -43,9 +46,10 @@ class MyApp extends StatelessWidget {
         ),
         navigatorKey: AppRouter.navKey,
         onGenerateRoute: AppRouter.appRouter,
-        initialRoute: firebaseService.auth.currentUser != null
-            ? AppRouteStrings.bottomNav
-            : AppRouteStrings.signUpScreen,
+        initialRoute: AppRouteStrings.base,
+        // initialRoute: firebaseService.auth.currentUser != null
+        //     ? AppRouteStrings.bottomNav
+        //     : AppRouteStrings.loginScreen,
       ),
     );
   }
